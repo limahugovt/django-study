@@ -7,13 +7,17 @@
               content="This is the registration page for our website.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <h1>Login</h1>
-        <form action="{% url 'login' %}" method="post">
-            <input type="text" name="username" placeholder="Username">
-            <input type="password" name="password" placeholder="Password">
-            <button type="submit">Login</button>
-        </form>
-        <a href="{% url 'register' %}">Register</a>
-    </body>
+    {% block content %}
+        {% load crispy_forms_tags %}
+        <body>
+            <h1>Register</h1>
+            <form action="{% url 'auth/register' %}" method="post">
+                {% csrf_token %}
+                {{ register|crispy }}
+                <button type="submit">Register</button>
+            </form>
+            {}
+            <a href="{% url 'register' %}">Register</a>
+        </body>
+    {% endblock content %}
 </html>
