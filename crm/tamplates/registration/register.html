@@ -2,12 +2,13 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
+        <title>Register</title>
+        <meta name="description"
+              content="This is the registration page for our website.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="LoginPage">
     </head>
-    {% extends "base.html" %}
     {% block content %}
+        {% load crispy_forms_tags %}
         <body>
             <section>
                 <div>
@@ -23,20 +24,22 @@
             <section>
                 <div>
                     <!-- <div>
-                <img src="" alt="">
-            </div> -->
+                        <img src="" alt="">
+                    </div> -->
                 </div>
-                <form method="post">
+                <form action="{% url 'register' %}" method="post">
                     {% csrf_token %}
+                    <label for="">Faça seu cadastro</label>
+                    <input type="text" placeholder="Nome">
                     <input type="email" placeholder="Email">
                     <input type="password" placeholder="Senha">
-                    <a href="">Esqueceu a Senha?</a>
-                    <button type="submit">Login</button>
-                    <div>
-                        <p>Não tem uma conta?</p>
-                        <a href="">Crie uma conta</a>
-                    </div>
+                    <input type="password" placeholder="Repetir sua senha">
+                    <button type="submit">Register</button>
                 </form>
+                <div>
+                    <p>Já tem uma conta?</p>
+                    <a href="{% url 'auth/login' %}">Faça login!</a>
+                </div>
             </section>
         </body>
     {% endblock content %}

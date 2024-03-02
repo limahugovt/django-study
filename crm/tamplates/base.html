@@ -1,0 +1,15 @@
+{% block content %}
+    <p>Mindmeet</p>
+    <div>
+        {% if user.is_anonymous %}
+            <div>
+                <a href="{% url 'auth/login' %}">login</a>
+            </div>
+        {% else %}
+            <div>
+                <p>seja bem vindo {{ user.get_full_name }}</p>
+                <a href="{% url 'auth/loggout' %}">Loggout</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
